@@ -1,0 +1,68 @@
+<h3>Registration Page</h3>
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+
+        <form [formGroup]="registrationForm">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <br />
+            <input type="text" formControlName="name" placeholder="name" />
+            <span *ngIf="
+                    !registrationForm.get('name').valid &&
+                    registrationForm.get('name').touched
+                  " class="help-block">
+              Please Enter A Valid Name
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="email">
+              Email:
+            </label>
+            <br />
+            <input type="email" formControlName="email" placeholder="email" />
+            <span *ngIf="
+                    !registrationForm.get('email').valid &&
+                    registrationForm.get('email').touched
+                  " class="help-block">
+              Please Enter A Valid Email
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">
+              Password:
+            </label>
+            <br />
+            <input type="password" formControlName="password" placeholder="password" />
+            <span *ngIf="
+                    !registrationForm.get('password').valid &&
+                    registrationForm.get('password').touched
+                  " class="help-block">
+              Please Enter A Valid Password
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="gender">
+              Gender:
+            </label>
+            <br />
+            <input type="radio" formControlName="gender" value="male" /> Male
+            <input type="radio" formControlName="gender" value="female" />
+            Female
+            <span *ngIf="
+                    !registrationForm.get('gender').valid &&
+                    registrationForm.get('gender').touched
+                  " class="help-block">
+              Please Select Gender
+            </span>
+          </div>
+          <input type="submit" value="submit" (click)="onSubmit()" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
