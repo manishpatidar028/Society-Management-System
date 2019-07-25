@@ -43,6 +43,20 @@
               Please Enter A Valid Password
             </span>
           </div>
+
+          <div class="form-group">
+            <label for="houseNumber">
+              House Number:
+            </label>
+            <br />
+            <input type="number" formControlName="houseNumber" placeholder="houseNumber" />
+            <span *ngIf="
+                    !registrationForm.get('password').valid &&
+                    registrationForm.get('password').touched
+                  " class="help-block">
+              Please Enter A Valid Password
+            </span>
+          </div>
           <div class="form-group">
             <label for="gender">
               Gender:
@@ -60,6 +74,8 @@
           </div>
           <input type="submit" value="submit" (click)="onSubmit()" />
         </form>
+        <br>
+        <a href="/login">Already Registered ? Login</a>
       </div>
     </div>
   </div>

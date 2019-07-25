@@ -11,7 +11,12 @@ import { ParkingComponent } from "./parking/parking.component";
 import { HeaderComponent } from "./header/header.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { WelcomeScreenComponent } from "./welcome-screen/welcome-screen.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+
+import { NgxSpinnerModule } from "ngx-spinner";
+import { AuthGuard } from "./shared/auth.guard";
+import { TokenInterceptorService } from "./token-interceptor.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +27,24 @@ import { HttpClientModule } from "@angular/common/http";
     ComplaintRaiseComponent,
     ParkingComponent,
     HeaderComponent,
-    WelcomeScreenComponent
+    WelcomeScreenComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

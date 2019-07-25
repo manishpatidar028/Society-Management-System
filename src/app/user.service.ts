@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
 
 interface User {
-  name: String;
-  email: String;
-  password: String;
-  gender: String;
+  name: string;
+  email: string;
+  password: string;
+  gender: string;
+  houseNumber: number;
 }
 
 @Injectable({
@@ -17,32 +19,24 @@ export class UserService {
 
   Signup(user: User) {
     console.log(user);
-    this.http.post("http://localhost:3000/register", user).subscribe(
-      response => {
-        if (response) {
-          this.router.navigate([""]);
-        }
-      },
-      err => {
-        console.log(err);
-        alert(err.error);
-      }
-    );
+    return this.http.post<any>("http://localhost:3000/register", user);
   }
   logIn(email: string, password: string) {
-    this.http
-      .post("http://localhost:3000/login", { email, password })
-      .subscribe(
-        response => {
-          console.log(response);
-          if (response) {
-            this.router.navigate(["/"]);
-          }
-        },
-        err => {
-          console.log(err);
-          alert(err.error);
-        }
-      );
+    return this.http.post<any>("http://localhost:3000/login", {
+      email: email,
+      password: password
+    });
+  }
+  loggedIn() {
+    return !!localStorage.getItem("token");
+  }
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem("token");
+    this.router.navigate(["/login"]);
+  }
+  getUserDetails() {}
+  getToken() {
+    return localStorage.getItem("token");
   }
 }

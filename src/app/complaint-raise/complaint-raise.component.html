@@ -1,1 +1,53 @@
-<p>complaint-raise works!</p>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <form [formGroup]="complaintForm">
+                    <div class="form-group">
+                        <label for="complaintTitle">
+                            Complaint Title:
+                        </label>
+                        <br />
+                        <input type="text" formControlName="complaintTitle" placeholder="Complaint Title" />
+                        <span *ngIf="
+                            !complaintForm.get('complaintTitle').valid &&
+                            complaintForm.get('complaintTitle').touched
+                          " class="help-block">
+                            Please Enter A Valid Complaint Title
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="complaintInDetails">
+                            Complaint:
+                        </label>
+                        <br />
+                        <textarea class="form-control" formControlName="complaintInDetails" rows="6"
+                            placeholder="Add Complaint  here."></textarea>
+                        <span *ngIf="
+                            !complaintForm.get('complaintInDetails').valid &&
+                            complaintForm.get('complaintInDetails').touched
+                          " class="help-block">
+                            Please Enter Complaint
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="images">
+                            Upload Images:
+                        </label>
+                        <input style="margin-left: 10px" type="file" formControlName="images"
+                            placeholder="Upload Images" />
+                        <span *ngIf="
+                            !complaintForm.get('images').valid &&
+                            complaintForm.get('images').touched
+                          " class="help-block">
+                            Please Upload Images
+                        </span>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit Complaint</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
