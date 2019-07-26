@@ -1,38 +1,26 @@
 <h3>LogIn</h3>
 <div class="container">
-  <div class="jumbotron">
-    <div class="row">
-      <form [formGroup]="loginForm">
-        <div class="form-group">
-          <label for="email">
-            Email:
-          </label>
-          <br />
-          <input type="email" formControlName="email" placeholder="email" />
-          <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="help-block">
-            Please Enter A Valid Email
-          </span>
-        </div>
 
-        <div class="form-group">
-          <label for="password">
-            Password:
-          </label>
-          <br />
-          <input type="password" formControlName="password" placeholder="password" />
-          <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" class="help-block">
-            Please Enter A Valid Password
-          </span>
-        </div>
+  <form style="border: 2px solid rgb(14, 126, 218); padding: 20px" [formGroup]="loginForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1"
+        aria-describedby="emailHelp" placeholder="Enter email">
 
-        <input type="submit" value="submit" (click)="onSubmit()" />
-
-        <br>
-        <br>
-        <a href="/registration">Not Registered ?
-          SignUp</a>
-      </form>
-
+      <span *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched" class="help-block">
+        Please Enter A Valid Email
+      </span>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1"
+        placeholder="Password">
+      <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched" class="help-block">
+        Please Enter A Valid Password
+      </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">LogIn</button>
+  </form>
+
 </div>

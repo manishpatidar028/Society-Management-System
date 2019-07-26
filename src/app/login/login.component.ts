@@ -25,14 +25,11 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     if (!this.loginForm.valid) {
-      return;
+      return alert("form not valid");
     } else {
       const email = this.loginForm.value["email"];
       const password = this.loginForm.value["password"];
-      this.userService.logIn(email, password).subscribe(res => {
-        localStorage.setItem("token", res.token);
-        this.router.navigate(["/complaint"]);
-      });
+      this.userService.logIn(email, password);
       this.loginForm.reset();
     }
   }

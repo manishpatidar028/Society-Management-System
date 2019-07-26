@@ -1,84 +1,110 @@
-<h3>Registration Page</h3>
 <div class="container">
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
-
-        <form [formGroup]="registrationForm">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <br />
-            <input type="text" formControlName="name" placeholder="name" />
-            <span *ngIf="
-                    !registrationForm.get('name').valid &&
-                    registrationForm.get('name').touched
-                  " class="help-block">
-              Please Enter A Valid Name
-            </span>
-          </div>
-          <div class="form-group">
-            <label for="email">
-              Email:
-            </label>
-            <br />
-            <input type="email" formControlName="email" placeholder="email" />
-            <span *ngIf="
-                    !registrationForm.get('email').valid &&
-                    registrationForm.get('email').touched
-                  " class="help-block">
-              Please Enter A Valid Email
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="password">
-              Password:
-            </label>
-            <br />
-            <input type="password" formControlName="password" placeholder="password" />
-            <span *ngIf="
-                    !registrationForm.get('password').valid &&
-                    registrationForm.get('password').touched
-                  " class="help-block">
-              Please Enter A Valid Password
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="houseNumber">
-              House Number:
-            </label>
-            <br />
-            <input type="number" formControlName="houseNumber" placeholder="houseNumber" />
-            <span *ngIf="
-                    !registrationForm.get('password').valid &&
-                    registrationForm.get('password').touched
-                  " class="help-block">
-              Please Enter A Valid Password
-            </span>
-          </div>
-          <div class="form-group">
-            <label for="gender">
-              Gender:
-            </label>
-            <br />
-            <input type="radio" formControlName="gender" value="male" /> Male
-            <input type="radio" formControlName="gender" value="female" />
-            Female
-            <span *ngIf="
-                    !registrationForm.get('gender').valid &&
-                    registrationForm.get('gender').touched
-                  " class="help-block">
-              Please Select Gender
-            </span>
-          </div>
-          <input type="submit" value="submit" (click)="onSubmit()" />
-        </form>
-        <br>
-        <a href="/login">Already Registered ? Login</a>
-      </div>
+  <h3>Registration Page</h3>
+  <form [formGroup]="registrationForm" >
+    <div class="form-group">
+      <label for="flatNumber">Enter Flat Number:</label>
+      <input type="text" formControlName="flatNumber" class="form-control" placeholder="Enter Flat Number" />
+      <span *ngIf="
+      !registrationForm.get('phoneNumber').valid &&
+      registrationForm.get('phoneNumber').touched
+    " class="help-phone">
+        Please Enter A Valid Phone Number
+      </span>
     </div>
-  </div>
+    <div class="form-group">
+      <label for="block">Enter Block:</label>
+      <input type="text" formControlName="block" class="form-control" placeholder="Enter Your Block" />
+      <span *ngIf="
+      !registrationForm.get('phoneNumber').valid &&
+      registrationForm.get('phoneNumber').touched
+    " class="help-phone">
+        Please Enter A Valid Phone Number
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="name">Enter Name:</label>
+      <input type="text" formControlName="name" class="form-control" placeholder="Enter Your name" />
+      <span *ngIf="
+      !registrationForm.get('phoneNumber').valid &&
+      registrationForm.get('phoneNumber').touched
+    " class="help-phone">
+        Please Enter A Valid Phone Number
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="phoneNumber">Enter Phone:</label>
+      <input type="number" formControlName="phoneNumber" class="form-control" placeholder="Enter Your Phone Number" />
+      <span *ngIf="
+          !registrationForm.get('phoneNumber').valid &&
+          registrationForm.get('phoneNumber').touched
+        " class="help-phone">
+        Please Enter A Valid Phone Number
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="email">Enter Email:</label>
+      <input type="email" formControlName="email" class="form-control" placeholder="Enter Your email" />
+      <span *ngIf="
+          !registrationForm.get('email').valid &&
+          registrationForm.get('email').touched
+        " class="help-email">
+        Please Enter A Valid email
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"
+        placeholder="Password" />
+      <span *ngIf="
+        !registrationForm.get('phoneNumber').valid &&
+        registrationForm.get('phoneNumber').touched
+      " class="help-phone">
+        Please Enter A Valid Phone Number
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">
+        Gender:
+      </label>
+      <br />
+      <input type="radio" formControlName="gender" value="male" /> Male
+      <input type="radio" formControlName="gender" value="female" />
+      Female
+      <span *ngIf="
+      !registrationForm.get('gender').valid &&
+      registrationForm.get('gender').touched
+    " class="help-phone">
+        Please Select Gender
+      </span>
+    </div>
+    <h4>Parking Details</h4>
+    <div class="form-group">
+      <label for="vehicleNumber">Vehicle Number</label>
+      <input formControlName="vehicleNumber" type="text" class="form-control" placeholder="Enter Your Vehicle Number" />
+      <span *ngIf="
+      !registrationForm.get('vehicleNumber').valid &&
+      registrationForm.get('vehicleNumber').touched
+    " class="help-phone">
+        Please Enter Vehicle Number
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="vehicleNumber2">Vehicle Number</label>
+      <input formControlName="vehicleNumber2" type="text" class="form-control"
+        placeholder="Enter Your Vehicle Number" />
+      <span *ngIf="
+      !registrationForm.get('vehicleNumber2').valid &&
+      registrationForm.get('vehicleNumber2').touched
+    " class="help-phone">
+        Please Enter Vehicle Number
+      </span>
+    </div>
+
+
+    <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+  </form>
+  <a href="/login">Already Registered ? Login</a>
 </div>
 
 <router-outlet></router-outlet>

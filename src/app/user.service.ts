@@ -1,14 +1,18 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
+import { Subject } from "rxjs";
 
 interface User {
+  flatNumber: string;
+  block: string;
   name: string;
+  phoneNumber: number;
   email: string;
   password: string;
   gender: string;
-  houseNumber: number;
+  vehicleNumber: string;
+  vehicleNumber2: string;
 }
 
 @Injectable({
@@ -22,10 +26,15 @@ export class UserService {
     return this.http.post<any>("http://localhost:3000/register", user);
   }
   logIn(email: string, password: string) {
-    return this.http.post<any>("http://localhost:3000/login", {
-      email: email,
-      password: password
-    });
+    return this.http
+      .post<any>("http://localhost:3000/login", {
+        email: email,
+        password: password
+      })
+      .subscribe(res => {
+        localStorage.setItem("token", res.token);
+        this.router.navigate(["/complaint"]);
+      });
   }
   loggedIn() {
     return !!localStorage.getItem("token");
@@ -35,7 +44,6 @@ export class UserService {
     localStorage.removeItem("token");
     this.router.navigate(["/login"]);
   }
-  getUserDetails() {}
   getToken() {
     return localStorage.getItem("token");
   }
