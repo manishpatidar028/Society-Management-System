@@ -29,7 +29,10 @@ export class LoginComponent implements OnInit {
     } else {
       const email = this.loginForm.value["email"];
       const password = this.loginForm.value["password"];
-      this.userService.logIn(email, password);
+      this.userService.logIn(email, password).subscribe(res => {
+        localStorage.setItem("token", res.token);
+        this.router.navigate(["/complaint"]);
+      });
       this.loginForm.reset();
     }
   }

@@ -26,9 +26,18 @@
       <li class="nav-item">
         <a class="nav-link" *ngIf="!userService.loggedIn()" routerLink="registration">Register</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="complaint">Complaint</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Complaint
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="complaint">Create New Complaint</a>
+          <a class="dropdown-item" href="#">View All Complaint</a>
+
+        </div>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" routerLink="parking-registration">Parking Registration</a>
       </li>
@@ -36,6 +45,7 @@
         <a class="nav-link" style="cursor: pointer" *ngIf="userService.loggedIn()"
           (click)="userService.logout()">Logout</a>
       </li>
+
     </ul>
   </nav>
   <br />

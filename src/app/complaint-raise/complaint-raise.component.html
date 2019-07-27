@@ -34,17 +34,18 @@
                         <label for="images">
                             Upload Images:
                         </label>
-                        <input style="margin-left: 10px" type="file" formControlName="images"
-                            placeholder="Upload Images" />
+                        <input style="margin-left: 10px" type="file" formControlName="complaintImages"
+                            placeholder="Upload Images" multiple />
                         <span *ngIf="
-                            !complaintForm.get('images').valid &&
-                            complaintForm.get('images').touched
+                            !complaintForm.get('complaintImages').valid &&
+                            complaintForm.get('complaintImages').touched
                           " class="help-block">
                             Please Upload Images
                         </span>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary" (click)="onsubmit()">Submit Complaint</button>
+                    <button type="submit" class="btn btn-primary" (click)="onSubmitComplaint()">Submit
+                        Complaint</button>
                 </form>
             </div>
         </div>

@@ -17,6 +17,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { AuthGuard } from "./shared/auth.guard";
 import { TokenInterceptorService } from "./token-interceptor.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ViewComplaintComponent } from './complaint-raise/view-complaint/view-complaint.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ParkingComponent,
     HeaderComponent,
     WelcomeScreenComponent,
-    DashboardComponent
+    DashboardComponent,
+    ViewComplaintComponent
   ],
   imports: [
     BrowserModule,

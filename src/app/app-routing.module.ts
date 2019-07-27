@@ -20,7 +20,8 @@ const routes: Routes = [
     path: "parking-registration",
     component: ParkingComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  { path: "**", redirectTo: "/login" }
 ];
 
 @NgModule({

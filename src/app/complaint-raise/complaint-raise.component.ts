@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { UserService } from "../user.service";
+import { ComplaintServiceService } from "../complaintService/complaint-service.service";
 
 @Component({
   selector: "app-complaint-raise",
@@ -12,7 +12,10 @@ export class ComplaintRaiseComponent implements OnInit {
   complaintForm: FormGroup;
   submitted = false;
 
-  constructor(private userservice: UserService) {}
+  constructor(
+    private complaintService: ComplaintServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.complaintForm = new FormGroup({
@@ -21,14 +24,20 @@ export class ComplaintRaiseComponent implements OnInit {
         Validators.required,
         Validators.email
       ]),
-      images: new FormControl(null, Validators.required)
+      complaintImages: new FormControl(null, Validators.required)
     });
   }
-  onsubmit() {
+  onSubmitComplaint() {
     this.submitted = true;
 
     const complaintTitle = this.complaintForm.value["complaintTitle"];
     const complaintInDetails = this.complaintForm.value["complaintInDetails"];
-    const images = this.complaintForm.value["images"];
+    const complaintImages = this.complaintForm.value["complaintImages"];
+    this.complaintService
+      .ComplaintRaise({ complaintTitle, complaintInDetails, complaintImages })
+      .subscribe(res => {
+        console.log(res);
+        this.router.navigate(["/parking-registration"]);
+      });
   }
 }
