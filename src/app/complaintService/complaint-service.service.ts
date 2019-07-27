@@ -5,7 +5,7 @@ import { Router } from "@angular/router";
 interface Complaint {
   complaintTitle: string;
   complaintInDetails: string;
-  complaintImages: [];
+  complaintImages: string;
 }
 @Injectable({
   providedIn: "root"
