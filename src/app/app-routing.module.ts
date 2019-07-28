@@ -4,23 +4,31 @@ import { LoginComponent } from "./login/login.component";
 import { WelcomeScreenComponent } from "./welcome-screen/welcome-screen.component";
 import { RegisterComponent } from "./register/register.component";
 import { ComplaintRaiseComponent } from "./complaint-raise/complaint-raise.component";
-import { ParkingComponent } from "./parking/parking.component";
 import { AuthGuard } from "./shared/auth.guard";
+import { ViewComplaintComponent } from "./complaint-raise/view-complaint/view-complaint.component";
+import { EditComplaintComponent } from "./complaint-raise/edit-complaint/edit-complaint.component";
 
 const routes: Routes = [
   { path: "", component: WelcomeScreenComponent },
   { path: "login", component: LoginComponent, pathMatch: "full" },
   { path: "registration", component: RegisterComponent },
   {
+    path: "viewComplaint",
+    component: ViewComplaintComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: "details",
+    component: EditComplaintComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
     path: "complaint",
     component: ComplaintRaiseComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: "parking-registration",
-    component: ParkingComponent,
-    canActivate: [AuthGuard]
-  },
+
   { path: "**", redirectTo: "/login" }
 ];
 

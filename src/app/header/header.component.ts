@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "../user.service";
+import { ComplaintServiceService } from "../complaint-raise/complaintService/complaint-service.service";
 
 @Component({
   selector: "app-header",
@@ -7,10 +8,17 @@ import { UserService } from "../user.service";
   styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  data;
+  constructor(
+    private userService: UserService,
+    private complaintService: ComplaintServiceService
+  ) {}
 
   ngOnInit() {}
   // onlogout() {
   //   this.userService.logout();
   // }
+  onfetch() {
+    this.data = this.complaintService.getComplaint().subscribe();
+  }
 }

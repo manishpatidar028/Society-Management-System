@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ComplaintServiceService } from "../complaintService/complaint-service.service";
+import { ComplaintServiceService } from "./complaintService/complaint-service.service";
 
 @Component({
   selector: "app-complaint-raise",
@@ -33,8 +33,14 @@ export class ComplaintRaiseComponent implements OnInit {
     const complaintTitle = this.complaintForm.value["complaintTitle"];
     const complaintInDetails = this.complaintForm.value["complaintInDetails"];
     const complaintImages = this.complaintForm.value["complaintImages"];
+    const complaintStatus = this.complaintForm.value["complaintStatus"];
     this.complaintService
-      .ComplaintRaise({ complaintTitle, complaintInDetails, complaintImages })
+      .ComplaintRaise({
+        complaintTitle,
+        complaintInDetails,
+        complaintImages,
+        complaintStatus
+      })
       .subscribe(res => {
         console.log(res);
         this.router.navigate(["/parking-registration"]);

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       const password = this.loginForm.value["password"];
       this.userService.logIn(email, password).subscribe(res => {
         localStorage.setItem("token", res.token);
-        this.router.navigate(["/complaint"]);
+        this.router.navigate([""]);
       });
       this.loginForm.reset();
     }
