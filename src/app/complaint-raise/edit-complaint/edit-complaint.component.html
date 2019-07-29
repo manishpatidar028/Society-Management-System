@@ -1,6 +1,25 @@
 <div class="container">
-    <form [formGroup]="form">
-        <input name="first" formControlName="first" [(ngModel)]="title">
-        <br>
-        <textarea name="last" formControlName="last" [(ngModel)]="details"></textarea> </form>
-</div>
+    <div class="row">
+        <div class="col">
+            <div class="table">
+                <tr>
+                    <th>Sr No</th>
+                    <th>Complaint Title</th>
+                    <th>Complaint Details</th>
+                    <th>Complaint Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let complaintDetails of complaintDetailsById | async  ;let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{complaintDetails.complaintTitle}}</td>
+                    <td>{{complaintDetails.complaintInDetails}}</td>
+                    <td>{{complaintDetails.complaintStatus}}</td>
+                    <td></td>
+                </tr>
+
+            </div>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>

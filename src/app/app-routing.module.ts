@@ -18,13 +18,13 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "details",
+    path: "complaintDetails/:id",
     component: EditComplaintComponent,
     canActivate: [AuthGuard]
   },
 
   {
-    path: "complaint",
+    path: "newComplaint",
     component: ComplaintRaiseComponent,
     canActivate: [AuthGuard]
   },

@@ -15,61 +15,17 @@ import { UserService } from "src/app/user.service";
   styleUrls: ["./edit-complaint.component.css"]
 })
 export class EditComplaintComponent implements OnInit {
+  complaintDetailsById;
   form: FormGroup;
-  example = { first: "", last: "" };
 
   editeditComplaintForm: FormGroup;
   submitted = false;
-  title = "";
+
   constructor(
-    builder: FormBuilder,
     private complaintService: ComplaintServiceService,
-    private userService: UserService,
     private router: Router
-  ) {
-    this.form = builder.group({
-      first: "",
-      last: ""
-    });
-  }
+  ) {}
 
-  ngOnInit() {
-    this.editeditComplaintForm = new FormGroup({
-      complaintTitle: new FormControl(null, Validators.required),
-      complaintInDetails: new FormControl(null, [
-        Validators.required,
-        Validators.email
-      ]),
-      complaintImages: new FormControl(null, Validators.required),
-      complaintStatus: new FormControl(null, Validators.required)
-    });
+  ngOnInit() {}
 
-    let data = this.complaintService.getValues();
-    console.log(data, "compaint datas");
-    this.title = data.complaintTitle;
-    this.details = data.complaintInDetails;
-    this.title = data.complaintTitle;
-    this.title = data.complaintTitle;
-  }
-  onSubmitComplaint() {
-    this.submitted = true;
-
-    const complaintTitle = this.editeditComplaintForm.value["complaintTitle"];
-    const complaintInDetails = this.editeditComplaintForm.value[
-      "complaintInDetails"
-    ];
-    const complaintImages = this.editeditComplaintForm.value["complaintImages"];
-    const complaintStatus = this.editeditComplaintForm.value["complaintStatus"];
-    this.complaintService
-      .ComplaintRaise({
-        complaintTitle,
-        complaintInDetails,
-        complaintImages,
-        complaintStatus
-      })
-      .subscribe(res => {
-        console.log(res);
-        this.router.navigate(["/parking-registration"]);
-      });
-  }
 }

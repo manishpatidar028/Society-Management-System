@@ -20,10 +20,7 @@ export class ComplaintRaiseComponent implements OnInit {
   ngOnInit() {
     this.complaintForm = new FormGroup({
       complaintTitle: new FormControl(null, Validators.required),
-      complaintInDetails: new FormControl(null, [
-        Validators.required,
-        Validators.email
-      ]),
+      complaintInDetails: new FormControl(null, [Validators.required]),
       complaintImages: new FormControl(null, Validators.required)
     });
   }
@@ -43,7 +40,7 @@ export class ComplaintRaiseComponent implements OnInit {
       })
       .subscribe(res => {
         console.log(res);
-        this.router.navigate(["/parking-registration"]);
+        this.router.navigate(["/viewComplaint"]);
       });
   }
 }

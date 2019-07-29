@@ -1,5 +1,5 @@
 export class ComplaintDetails {
-  _id: number;
+  _id: string;
   complaintTitle: string;
   complaintInTitle: string;
   complaintImages: string;

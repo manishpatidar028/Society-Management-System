@@ -14,8 +14,6 @@ interface Complaint {
   providedIn: "root"
 })
 export class ComplaintServiceService {
-  compalintObj = {};
-
   constructor(private http: HttpClient, private router: Router) {}
   ComplaintRaise(Complaint: Complaint) {
     console.log(Complaint);
@@ -29,17 +27,9 @@ export class ComplaintServiceService {
       "http://localhost:3000/getComplaint"
     );
   }
-  returnOneValue(ComplaintObj: object) {
-    console.log(
-      "=================> Find One",
-      ComplaintObj,
-      typeof ComplaintObj
+  getComplaintById(_id): Observable<ComplaintDetails[]> {
+    return this.http.get<ComplaintDetails[]>(
+      "http://localhost:3000/getComplaintById/" + _id
     );
-    this.router.navigate(["/details"]);
-    return (this.compalintObj = ComplaintObj);
-  }
-  getValues() {
-    console.log(this.compalintObj, "<=================");
-    return this.compalintObj;
   }
 }

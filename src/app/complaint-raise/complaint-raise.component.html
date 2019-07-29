@@ -21,7 +21,7 @@
                             Enter Complain Details:
                         </label>
                         <br />
-                        <textarea class="form-control" formControlName="complaintInDetails" rows="6"
+                        <textarea class="form-control" formControlName="complaintInDetails"
                             placeholder="Add Complaint  here."></textarea>
                         <span *ngIf="
                             !complaintForm.get('complaintInDetails').valid &&
@@ -43,6 +43,7 @@
                             Please Upload Images
                         </span>
                     </div>
+
                     <br>
                     <button type="submit" class="btn btn-primary" (click)="onSubmitComplaint()">Submit
                         Complaint</button>
