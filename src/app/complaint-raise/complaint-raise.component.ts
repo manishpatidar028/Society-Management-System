@@ -9,6 +9,7 @@ import { ComplaintServiceService } from "./complaintService/complaint-service.se
   styleUrls: ["./complaint-raise.component.css"]
 })
 export class ComplaintRaiseComponent implements OnInit {
+  selectedFile: File;
   complaintForm: FormGroup;
   submitted = false;
 
@@ -24,23 +25,26 @@ export class ComplaintRaiseComponent implements OnInit {
       complaintImages: new FormControl(null, Validators.required)
     });
   }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.selectedFile = file;
+    }
+  }
   onSubmitComplaint() {
     this.submitted = true;
+    const formData = new FormData();
+    formData.append("complaintTitle", this.complaintForm.value.complaintTitle);
+    formData.append("complaintImages", this.selectedFile);
+    formData.append(
+      "complaintInDetails",
+      this.complaintForm.value.complaintInDetails
+    );
 
-    const complaintTitle = this.complaintForm.value["complaintTitle"];
-    const complaintInDetails = this.complaintForm.value["complaintInDetails"];
-    const complaintImages = this.complaintForm.value["complaintImages"];
-    const complaintStatus = this.complaintForm.value["complaintStatus"];
-    this.complaintService
-      .ComplaintRaise({
-        complaintTitle,
-        complaintInDetails,
-        complaintImages,
-        complaintStatus
-      })
-      .subscribe(res => {
-        console.log(res);
-        this.router.navigate(["/viewComplaint"]);
-      });
+    this.complaintService.ComplaintRaise(FormData).subscribe(res => {
+      console.log(res);
+      this.router.navigate(["/viewComplaint"]);
+    });
   }
 }

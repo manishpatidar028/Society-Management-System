@@ -22,10 +22,10 @@ export class UserService {
 
   Signup(user: User) {
     console.log(user);
-    return this.http.post<any>("http://localhost:3000/register", user);
+    return this.http.post<any>("http://192.168.2.96:3000/register", user);
   }
   logIn(email: string, password: string) {
-    return this.http.post<any>("http://localhost:3000/login", {
+    return this.http.post<any>("http://192.168.2.96:3000/login", {
       email: email,
       password: password
     });

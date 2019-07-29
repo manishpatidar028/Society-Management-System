@@ -1,35 +1,55 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { ComplaintDetails } from "../view-complaint/complaint";
+import { typeWithParameters } from "@angular/compiler/src/render3/util";
 
 interface Complaint {
   complaintTitle: string;
   complaintInDetails: string;
-  complaintImages: string;
+  complaintImages: File;
   complaintStatus: string;
 }
 @Injectable({
   providedIn: "root"
 })
 export class ComplaintServiceService {
+  selectedFile = null;
+  cmpid: string;
+  details = new Subject<ComplaintDetails[]>();
+  compliantID = new Subject<string>();
+  messagesource = this.compliantID.asObservable();
+  sendalldetail = this.details.asObservable();
   constructor(private http: HttpClient, private router: Router) {}
+
   ComplaintRaise(Complaint: Complaint) {
     console.log(Complaint);
     return this.http.post<any>(
-      "http://localhost:3000/postComplaint",
+      "http://192.168.2.96:3000/postComplaint",
       Complaint
     );
   }
   getComplaint(): Observable<ComplaintDetails[]> {
     return this.http.get<ComplaintDetails[]>(
-      "http://localhost:3000/getComplaint"
+      "http://192.168.2.96:3000/getComplaint"
     );
   }
-  getComplaintById(_id): Observable<ComplaintDetails[]> {
-    return this.http.get<ComplaintDetails[]>(
-      "http://localhost:3000/getComplaintById/" + _id
-    );
+  getComplaintById(id) {
+    this.http
+      .get<ComplaintDetails[]>(
+        "http://192.168.2.96:3000/getComplaintById/" + id
+      )
+      .subscribe(result => {
+        console.log(result);
+        this.cmpid = result[0]._id;
+        this.details[0] = result[0];
+        console.log(this.details[0]);
+        this.details.next(this.details[0]);
+
+        console.log(this.details[0].complaintStatus);
+        this.compliantID.next(this.cmpid);
+        this.router.navigate(["/complaintDetails/", +id]);
+      });
   }
 }

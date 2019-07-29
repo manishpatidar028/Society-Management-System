@@ -1,5 +1,4 @@
-<button *ngIf="!isData" (click)="onfetch()">View All complaint</button>
-<div class="container">
+<div class="jumbotron">
     <div class="row">
         <div *ngIf="isData" class="col">
             <table class="table">
@@ -7,6 +6,7 @@
                     <th>Sr No</th>
                     <th>Complaint Title</th>
                     <th>Complaint Details</th>
+                    <th>Complaint By</th>
                     <th>Complaint Status</th>
                     <th></th>
                     <th></th>
@@ -15,10 +15,10 @@
                     <td>{{i + 1}}</td>
                     <td>{{complaintDetails.complaintTitle}}</td>
                     <td>{{complaintDetails.complaintInDetails}}</td>
+                    <td>{{complaintDetails.userID.name}}</td>
+
                     <td>{{complaintDetails.complaintStatus}}</td>
                     <td><a (click)="getById(complaintDetails._id)">View Details</a></td>
-
-
                     <td></td>
                 </tr>
 

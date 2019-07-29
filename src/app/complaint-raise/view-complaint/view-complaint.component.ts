@@ -11,22 +11,21 @@ export class ViewComplaintComponent implements OnInit {
   complaintDetailsById;
   isData = false;
   data;
+  complaintid;
   constructor(
     private complaintService: ComplaintServiceService,
     private router: Router
   ) {}
 
-  ngOnInit() {}
-  onfetch() {
+  ngOnInit() {
     this.data = this.complaintService.getComplaint();
     this.isData = true;
   }
 
   getById(_id) {
-    this.complaintDetailsById = this.complaintService
-      .getComplaintById(_id)
-      .subscribe(result => {
-        this.router.navigate(["/complaintDetails", +_id]);
-      });
+    this.complaintDetailsById = this.complaintService.getComplaintById(_id);
+  }
+  setData(data) {
+    this.complaintDetailsById.next(data);
   }
 }
