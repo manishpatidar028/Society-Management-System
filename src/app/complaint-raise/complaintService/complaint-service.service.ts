@@ -36,20 +36,8 @@ export class ComplaintServiceService {
     );
   }
   getComplaintById(id) {
-    this.http
-      .get<ComplaintDetails[]>(
-        "http://192.168.2.96:3000/getComplaintById/" + id
-      )
-      .subscribe(result => {
-        console.log(result);
-        this.cmpid = result[0]._id;
-        this.details[0] = result[0];
-        console.log(this.details[0]);
-        this.details.next(this.details[0]);
-
-        console.log(this.details[0].complaintStatus);
-        this.compliantID.next(this.cmpid);
-        this.router.navigate(["/complaintDetails/", +id]);
-      });
+    return this.http.get<ComplaintDetails[]>(
+      "http://192.168.2.96:3000/getComplaintById/" + id
+    );
   }
 }

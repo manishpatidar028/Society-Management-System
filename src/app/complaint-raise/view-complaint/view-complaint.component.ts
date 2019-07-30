@@ -24,6 +24,7 @@ export class ViewComplaintComponent implements OnInit {
 
   getById(_id) {
     this.complaintDetailsById = this.complaintService.getComplaintById(_id);
+    this.router.navigate(["/complaintDetails/" + _id]);
   }
   setData(data) {
     this.complaintDetailsById.next(data);

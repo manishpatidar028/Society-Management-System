@@ -1,26 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from "@angular/forms";
+
 import { ComplaintServiceService } from "src/app/complaint-raise/complaintService/complaint-service.service";
-import { Router } from "@angular/router";
-import { UserService } from "src/app/user.service";
+import { Params, ActivatedRoute } from "@angular/router";
 import { ComplaintDetails } from "../view-complaint/complaint";
-
-// interface structure{
-//     complaintImages:string,
-//     complaintInDetails:string,
-//     complaintStatus:string,
-//     complaintTitle:string,
-//     isCompleted:boolean,
-//     userID:string
-// }
-
-
-
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-edit-complaint",
@@ -28,28 +11,21 @@ import { ComplaintDetails } from "../view-complaint/complaint";
   styleUrls: ["./edit-complaint.component.css"]
 })
 export class EditComplaintComponent implements OnInit {
-  complaintDetailsById: ComplaintDetails[];
+  complaintDetailsById;
   id: string;
   constructor(
     private complaintService: ComplaintServiceService,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.complaintService.messagesource.subscribe(res => {
-      this.id = res;
-      console.log(this.id);
-
-      
+    this.route.params.subscribe((params: Params) => {
+      this.complaintDetailsById = this.complaintService.getComplaintById(
+        params.id
+      );
     });
-
-    this.complaintService.sendalldetail.subscribe(res => {
-      console.log(res);
-      this.complaintDetailsById = res;
-      console.log(this.complaintDetailsById);
+    this.complaintDetailsById.subscribe(data => {
+      console.log(data);
     });
   }
-  //   this.complaintDetailsById = this.complaintService.getComplaintById(this.id);
-  // getById(id) {
-  // }
 }

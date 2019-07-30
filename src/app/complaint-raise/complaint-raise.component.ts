@@ -42,7 +42,7 @@ export class ComplaintRaiseComponent implements OnInit {
       this.complaintForm.value.complaintInDetails
     );
 
-    this.complaintService.ComplaintRaise(FormData).subscribe(res => {
+    this.complaintService.ComplaintRaise(formData).subscribe(res => {
       console.log(res);
       this.router.navigate(["/viewComplaint"]);
     });
