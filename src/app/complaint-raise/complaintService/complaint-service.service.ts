@@ -23,7 +23,7 @@ export class ComplaintServiceService {
   sendalldetail = this.details.asObservable();
   constructor(private http: HttpClient, private router: Router) {}
 
-  ComplaintRaise(Complaint: Complaint) {
+  ComplaintRaise(Complaint: FormData) {
     console.log(Complaint);
     return this.http.post<any>(
       "http://192.168.2.96:3000/postComplaint",
