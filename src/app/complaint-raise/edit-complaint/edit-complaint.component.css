@@ -3,5 +3,15 @@ div.sticky {
   position: initial;
   width: 50%;
   bottom: 10px;
-  border: 3px solid #8ac007;
+  background: aliceblue;
+}
+div.title {
+  background: aliceblue;
+  font-style: oblique;
+  position: initial;
+  border: 1px solid #daac15;
+  font-family: "Times New Roman", Times, serif;
+}
+div {
+  font-family: "Times New Roman";
 }
